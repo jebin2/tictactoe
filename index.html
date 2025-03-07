@@ -51,10 +51,14 @@
 		<div class="controls">
 			<button class="btn restart" id="change_turn" onclick="whoseFirstTurn()">x</button>
 			<button class="btn restart" id="restart" onclick="resetGame()">RESTART</button>
-			<button class="btn restart" id="train_btn" onclick="TrainAI()">Train AI</button>
+			<button class="btn restart" id="train_btn" onclick="TrainAI()" style="width: 110px">Train AI</button>
 		</div>
-
+		<div class="slider-container" id="sliderContainer">
+			<label for="trainIterations">Training Iterations: <span id="iterationValue">1000</span></label>
+			<input type="range" min="100" max="100000" value="1000" step="100" class="slider" id="trainIterations">
+		</div>
 		<div class="progress-container">
+			<div class="training-info" id="trainingInfo"></div>
 			<div class="progress-bar" id="gameProgress"></div>
 		</div>
 	</div>

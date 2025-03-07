@@ -81,8 +81,9 @@ class TicTacToe {
 }
 
 class TicTacToeAI {
-	constructor(training_count=10000) {
-		this.training_count = training_count;
+	constructor() {
+		const iterationValue = document.getElementById('iterationValue');
+		this.training_count = parseInt(iterationValue.textContent);
 		this.learning_rate = 0.5;
 		this.q_table = [];
 	}
@@ -110,14 +111,14 @@ class TicTacToeAI {
 		for(var i=0; i<9; i++) {
 			if(original_data[i] == "none") {
 				var new_board = this.clone_new_move(new_train, i);
-				if(this.q_table[new_board] >= rank) {
+				if (rank == -999999) rank = this.get_q_table(new_board);
+				if(this.get_q_table(new_board) >= rank) {
 					new_moves.push(i);
-					rank = this.q_table[new_board];
+					rank = this.get_q_table(new_board);
 					max_cell = i;
 				}
 			}
 		}
-
 		if (only_max) {
 			return [rank, new_train.board[max_cell]];
 		}
@@ -131,6 +132,7 @@ class TicTacToeAI {
 		document.getElementById('board').style.pointerEvents = "none";
 		document.getElementById('restart').style.pointerEvents = "none";
 		document.getElementById('change_turn').style.pointerEvents = "none";
+		document.getElementById('sliderContainer').style.pointerEvents = "none";
         while (new_count >= 0) {
             let new_train = new TicTacToe();
             new_train.currentPlayer = ['x', 'o'][Math.floor(Math.random() * 2)];
@@ -177,8 +179,10 @@ class TicTacToeAI {
 
 function updateProgress(count, total_count) {
 	const progressBar = document.getElementById('gameProgress');
+	const trainingInfo = document.getElementById('trainingInfo');
 	const progressPercent = parseInt((count / total_count) * 100);
 	progressBar.style.width = progressPercent + '%';
+	trainingInfo.textContent = `Training: ${count}/${total_count}`
 }
 
 function makeMove(cell) {
@@ -209,6 +213,7 @@ function resetGame() {
 		document.getElementById('board').style.pointerEvents = "";
 		document.getElementById('restart').style.pointerEvents = "";
 		document.getElementById('change_turn').style.pointerEvents = "";
+		document.getElementById('sliderContainer').style.pointerEvents = "";
 	}
 }
 
@@ -234,3 +239,13 @@ function TrainAI() {
 		document.getElementById('train_btn').textContent = "Train AI";
 	}
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('trainIterations');
+    const iterationValue = document.getElementById('iterationValue');
+    
+    // Update the displayed value when the slider is moved
+    slider.addEventListener('input', function() {
+        iterationValue.textContent = this.value;
+    });
+});
