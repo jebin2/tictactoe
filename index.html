@@ -1,0 +1,63 @@
+<!DoCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Neumorphic Tic Tac Toe</title>
+	<link rel="stylesheet" href="./index.css">
+	<script src="./index.js" defer></script>
+</head>
+
+<body>
+	<div class="decoration dec1"></div>
+	<div class="decoration dec2"></div>
+
+	<div class="container">
+		<h1>TIC TAC ToE</h1>
+
+		<div class="game-info" id="gameInfo">You Play x</div>
+
+		<div class="board" id="board">
+			<div class="cell-wrapper">
+				<div class="cell" data-index="1" onclick="makeMove(this)"></div>
+			</div>
+			<div class="cell-wrapper">
+				<div class="cell" onclick="makeMove(this)"></div>
+			</div>
+			<div class="cell-wrapper">
+				<div class="cell" onclick="makeMove(this)"></div>
+			</div>
+			<div class="cell-wrapper">
+				<div class="cell" onclick="makeMove(this)"></div>
+			</div>
+			<div class="cell-wrapper">
+				<div class="cell" onclick="makeMove(this)"></div>
+			</div>
+			<div class="cell-wrapper">
+				<div class="cell" onclick="makeMove(this)"></div>
+			</div>
+			<div class="cell-wrapper">
+				<div class="cell" onclick="makeMove(this)"></div>
+			</div>
+			<div class="cell-wrapper">
+				<div class="cell" onclick="makeMove(this)"></div>
+			</div>
+			<div class="cell-wrapper">
+				<div class="cell" onclick="makeMove(this)"></div>
+			</div>
+		</div>
+
+		<div class="controls">
+			<button class="btn restart" id="change_turn" onclick="whoseFirstTurn()">x</button>
+			<button class="btn restart" id="restart" onclick="resetGame()">RESTART</button>
+			<button class="btn restart" id="train_btn" onclick="TrainAI()">Train AI</button>
+		</div>
+
+		<div class="progress-container">
+			<div class="progress-bar" id="gameProgress"></div>
+		</div>
+	</div>
+</body>
+
+</html>
